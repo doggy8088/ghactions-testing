@@ -26,7 +26,7 @@ jobs:
       run: dotnet build --configuration Release
 
     - name: dotnet publish
-      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+      run: dotnet publish -c Release -r win10-x64 --self-contained -o ${{env.DOTNET_ROOT}}/myapp
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
@@ -53,5 +53,5 @@ jobs:
       with:
         app-name: 'ghactions-testing'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_14e8455dd41949f1b65841ca7481ae7c }}
+        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
         package: .
